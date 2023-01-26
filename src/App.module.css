@@ -1,0 +1,23 @@
+.wrapper header {
+  background: var(--gray-700);
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper header img {
+  margin-right: 12px;
+  height: 36px;
+}
+
+.wrapper header span {
+  font-size: 2.5rem;
+  color: var(--blue);
+  font-weight: 700;
+}
+
+.wrapper header span + span {
+  color: var(--purple-dark);
+}
+

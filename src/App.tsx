@@ -1,12 +1,19 @@
 import { useState } from 'react'
 import './global.css'
+import styles from './App.module.css'
+import rocketLogo from './assets/rocket.svg'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div>
-        <header>todo</header>
+    <div className={styles.wrapper}>
+        <header>
+          <img src={rocketLogo} />
+          <span>to</span>
+          <span>do</span>          
+        </header>
+
         <main>
           <div className="new-task">
             <input />
