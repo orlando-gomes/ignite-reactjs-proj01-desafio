@@ -3,8 +3,13 @@ import { Trash } from 'phosphor-react';
 import styles from './Task.module.css';
 import { Checkbox } from './Checkbox';
 
-export function Task() {
-  const [checkboxIsChecked, setCheckboxIsChecked] = useState(false);
+interface TaskProps {
+  content: string;
+  isChecked: boolean;
+}
+
+export function Task({content, isChecked}: TaskProps) {
+  const [checkboxIsChecked, setCheckboxIsChecked] = useState(isChecked);
 
   function handleCheckboxClick() {
     setCheckboxIsChecked(!checkboxIsChecked);
@@ -15,7 +20,7 @@ export function Task() {
       <Checkbox isChecked={checkboxIsChecked} onCheckboxClick={handleCheckboxClick} />      
       <div 
         className={checkboxIsChecked ? styles.contentChecked : styles.content}>
-          Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.
+          {content}
       </div>
       <button>
         <Trash size={18} />
