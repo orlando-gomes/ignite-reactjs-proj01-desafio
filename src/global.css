@@ -34,3 +34,11 @@ body, input {
   font-size: 0.875rem;
   line-height: 140%;
 }
+
+:focus {
+  outline: 2px solid var(--purple-dark);
+}
+
+:focus[type='checkbox'] {
+  outline: 0;
+}

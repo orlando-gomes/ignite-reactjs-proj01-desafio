@@ -7,8 +7,8 @@
 }
 
 .wrapper header img {
-  margin-right: 12px;
-  height: 36px;
+  margin-right: 0.75rem;
+  height: 2.25rem;
 }
 
 .wrapper header span {
@@ -21,3 +21,118 @@
   color: var(--purple-dark);
 }
 
+.wrapper main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -1.69rem;
+}
+
+.newTask {
+  width: 46rem;
+}
+
+.newTask form {
+  display: flex;
+  justify-content: space-between; 
+  margin-bottom: 4rem;
+}
+
+.newTask input {
+  width: 39.875rem;
+  height: 3.375rem;
+  background-color: var(--gray-500);
+  border: 1px solid var(--gray-700);
+  border-radius: 8px;
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+.newTask input::placeholder {
+  color: var(--gray-300);
+}
+
+.newTask button {
+  background-color: var(--blue-dark);
+  color: var(--gray-100);
+  height: 3.25rem;
+  width: 5.625rem;
+  border: 0;
+  border-radius: 8px;
+  font-size: 0.875rem; 
+
+  transition: background-color 0.1s;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.newTask button:hover {
+  background-color: var(--blue);
+}
+
+.newTask button div {
+  display: flex;
+}
+
+.newTask button span {
+  display: flex;
+  justify-content: center;
+}
+
+.newTask button span + span {
+  margin-left: 0.5rem;
+}
+
+.tasksInfo {
+  width: 46rem;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.tasksInfo > div:first-child {
+  display: flex;
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--blue);
+}
+
+.tasksInfo > div:first-child span + span {
+  display: flex;
+  font-size: 0.75rem;
+  color: var(--gray-200);
+  margin-left: 0.5rem;
+  background-color: var(--gray-400);
+  width: 1.5rem;
+  height: 1.19rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.tasksInfo div + div {
+  display: flex;
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--purple);
+}
+
+.tasksInfo div + div span + span {
+  display: flex;
+  font-size: 0.75rem;
+  color: var(--gray-200);
+  margin-left: 0.5rem;
+  background-color: var(--gray-400);
+  width: 3.25rem;
+  height: 1.19rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.tasksList article + article {
+  margin-top: 0.75rem;
+}
