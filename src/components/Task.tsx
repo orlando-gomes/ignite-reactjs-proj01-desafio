@@ -4,15 +4,18 @@ import styles from './Task.module.css';
 import { Checkbox } from './Checkbox';
 
 interface TaskProps {
+  id: number;
   content: string;
   isChecked: boolean;
+  onTaskIsChecked: (taskId: number) => void;
 }
 
-export function Task({content, isChecked}: TaskProps) {
+export function Task({id, content, isChecked, onTaskIsChecked}: TaskProps) {
   const [checkboxIsChecked, setCheckboxIsChecked] = useState(isChecked);
 
   function handleCheckboxClick() {
     setCheckboxIsChecked(!checkboxIsChecked);
+    onTaskIsChecked(id);
   }
 
   return (

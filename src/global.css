@@ -42,3 +42,7 @@ body, input {
 :focus[type='checkbox'] {
   outline: 0;
 }
+
+button:focus {
+  outline: 0;
+}
