@@ -55,6 +55,7 @@
   padding: 1rem;
   font-size: 1rem;
   cursor: default;
+  color: var(--gray-100);
 }
 
 .newTask input::placeholder {

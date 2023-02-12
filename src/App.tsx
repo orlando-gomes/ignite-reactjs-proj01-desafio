@@ -4,6 +4,7 @@ import './global.css'
 import styles from './App.module.css'
 import rocketLogo from './assets/rocket.svg'
 import { Task } from './components/Task'
+import { EmptyTaskList } from './components/EmptyTaskList'
 
 
 function App() {
@@ -156,7 +157,7 @@ function App() {
               );
             })
           : (
-            <h1>Nada a exibir</h1>
+            <EmptyTaskList />
           )}
           </div>
         </div>
