@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, FormEvent,ChangeEvent } from 'react'
 import { PlusCircle } from 'phosphor-react'
 import './global.css'
 import styles from './App.module.css'
@@ -9,7 +9,13 @@ import { Task } from './components/Task'
 function App() {
   const [count, setCount] = useState(0)
 
-  const [tasks, setTasks] = useState(
+  interface Task {
+    id: number;
+    content: string;
+    isChecked: boolean;
+  }
+
+  const [tasks, setTasks] = useState<Task []>(
     [
       {
         id: 1,
@@ -23,11 +29,13 @@ function App() {
       },
       {
         id: 3,
-        content: 'A expressão Lorem ipsum em design gráfico e editoração é um texto padrão em latim utilizado na produção gráfica para preencher os espaços de texto em publicações para testar e ajustar aspectos visuais antes de utilizar conteúdo real.',
+        content: 'Esta é uma tarefa finalizada.',
         isChecked: true,
       }
     ]
   );
+
+  const [inputTask, setInputTask] = useState('');
 
 
   const [numberOfTasksChecked, setNumberOfTasksChecked] = useState(() => {
@@ -45,7 +53,7 @@ function App() {
     setNumberOfTasksChecked(numberOfTasksChecked);
   }), [tasks];
 
-  function handleChecktask(taskId: number) {
+  function handleCheckTask(taskId: number) {
     const updatedTasks = tasks.map((task) => {
       if (task.id === taskId) {
         task.isChecked = !task.isChecked;
@@ -56,8 +64,44 @@ function App() {
     setTasks(updatedTasks);
   }
 
-  function handleAddTask() {
-    console.log('Task added');
+  function handleAddTask(event: FormEvent) {
+    event.preventDefault();
+    if(inputTask.trim()!=='') {
+      addTextToTasksSet(inputTask)
+    }
+    setInputTask('');
+  }
+
+  function addTextToTasksSet(text: string) {
+    const newTasksSet = [...tasks,{
+      id: generateNewId(),
+      content: text,
+      isChecked: false,
+    }];
+
+    setTasks(newTasksSet);
+  }
+
+  function generateNewId():number {
+    const newId = tasks.reduce((generatedId, task)=>{
+      if(task.id>generatedId) {
+        generatedId=task.id
+      }
+      return generatedId
+    }, 1)
+    return newId+1;
+  }
+
+  function handleChangeInputText(event: ChangeEvent<HTMLInputElement>) {
+    setInputTask(event.target.value)
+  }
+
+  function handleDeleteTask(taskId: number) {
+    const remainingTasks = tasks.filter(task => {
+      return task.id !== taskId;
+    });
+
+    setTasks(remainingTasks);
   }
 
   return (
@@ -70,9 +114,13 @@ function App() {
 
       <main>
         <div className={styles.newTask}>
-          <form>
-            <input placeholder='Adicione uma nova tarefa' value='' />
-            <button>
+          <form onSubmit={handleAddTask} >
+            <input 
+              placeholder='Adicione uma nova tarefa'
+              value={inputTask} 
+              onChange={handleChangeInputText} 
+            />
+            <button type='submit'>
               <div>
                 <span>Criar</span>
                 <span><PlusCircle size={16} /></span>
@@ -102,7 +150,8 @@ function App() {
                   id={item.id}
                   content={item.content}
                   isChecked={item.isChecked}
-                  onTaskIsChecked={handleChecktask}
+                  onTaskIsChecked={handleCheckTask}
+                  onTaskIsDeleted={handleDeleteTask}
                 />
               );
             })
@@ -116,4 +165,4 @@ function App() {
   )
 }
 
-export default App
+export default  App

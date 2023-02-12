@@ -54,10 +54,16 @@
   border-radius: 8px;
   padding: 1rem;
   font-size: 1rem;
+  cursor: default;
 }
 
 .newTask input::placeholder {
   color: var(--gray-300);
+}
+
+.newTask input:hover {
+  background-color: var(--gray-500);
+  border: 1px solid var(--gray-700);
 }
 
 .newTask button {

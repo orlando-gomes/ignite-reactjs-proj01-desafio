@@ -8,14 +8,19 @@ interface TaskProps {
   content: string;
   isChecked: boolean;
   onTaskIsChecked: (taskId: number) => void;
+  onTaskIsDeleted: (taskId: number) => void;
 }
 
-export function Task({id, content, isChecked, onTaskIsChecked}: TaskProps) {
+export function Task({id, content, isChecked, onTaskIsChecked, onTaskIsDeleted}: TaskProps) {
   const [checkboxIsChecked, setCheckboxIsChecked] = useState(isChecked);
 
   function handleCheckboxClick() {
     setCheckboxIsChecked(!checkboxIsChecked);
     onTaskIsChecked(id);
+  }
+
+  function handleDelete() {
+    onTaskIsDeleted(id)
   }
 
   return (
@@ -25,7 +30,7 @@ export function Task({id, content, isChecked, onTaskIsChecked}: TaskProps) {
         className={checkboxIsChecked ? styles.contentChecked : styles.content}>
           {content}
       </div>
-      <button>
+      <button onClick={handleDelete}>
         <Trash size={18} />
       </button>
     </article>
